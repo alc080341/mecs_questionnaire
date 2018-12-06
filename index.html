@@ -1,0 +1,90 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Kev's Decorating [Painter and Decorator in Oxford]</title>
+	<link rel="stylesheet" href="stylesheet.css">
+</head>
+
+
+<body>
+	<div id="questions">
+<!--
+<button class="questionButton" id="q1">TRUE</button>
+<button class="questionButton" id="q3">FALSE</button>
+<button class="questionButton" id="q4">TRUE</button>
+<button class="questionButton" id="q5">FALSE</button>
+<button class="questionButton" id="q6">TRUE</button>
+<button class="questionButton" id="q7">FALSE</button>
+<button class="questionButton" id="q8">TRUE</button>
+<button class="questionButton" id="q9">FALSE</button>
+-->
+
+
+</div>
+
+<script type="text/javascript">
+
+	var questions = [
+	{
+		questionNumber: 1,
+		question: 'Hello',
+		questionValue: false,
+		backgroundColorTrue: 'green',
+		backgroundColorFalse: 'red'
+	},
+	{
+		questionNumber: 2,
+		question: 'Hello',
+		questionValue: false,
+		backgroundColorTrue: 'green',
+		backgroundColorFalse: 'red'
+	},
+	{
+		questionNumber: 3,
+		question: 'Hello',
+		questionValue: false,
+		backgroundColorTrue: 'green',
+		backgroundColorFalse: 'red'
+	},
+	{
+		questionNumber: 4,
+		question: 'Hello',
+		questionValue: false,
+		backgroundColorTrue: 'green',
+		backgroundColorFalse: 'red'
+	},
+	{
+		questionNumber: 5,
+		question: 'Hello',
+		questionValue: false,
+		backgroundColorTrue: 'green',
+		backgroundColorFalse: 'red'
+	}
+	];
+
+submitQuestion();
+
+function submitQuestion(questionNumber, questionValue) 
+{
+
+	var questionButtons = document.getElementsByClassName("questionButton");
+
+
+		let returnQuestions = "";
+
+		for(let i = 0; i < questions.length; i++)
+		{
+			returnQuestions += "<button onclick='submitQuestion(" +questions[i].questionNumber + "," + questions[i].questionValue+ ")' style='background-color:"+ questions[i].backgroundColor + "' class='questionButton'>" + questions[i].question + "</button>";
+		}
+		document.getElementById("questions").innerHTML = returnQuestions;
+	
+
+}
+
+
+</script>
+</body>
+</html>

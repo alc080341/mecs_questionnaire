@@ -1,0 +1,186 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>MECS triage algorithm</title>
+	<link rel="stylesheet" href="stylesheet.css">
+</head>
+
+
+<body>
+	<div id="questions">
+
+
+	</div>
+	<div id="submit_row" class="submit_row">
+	</div>
+
+	<div id="result_background" class="result_background">
+	</div>
+	<div id="result_foreground_container" class="result_foreground_container">
+		<div id="result_foreground" class="result_foreground">
+			
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		var questions = [
+		{
+			questionNumber: 1,
+			question: 'This is question 1',
+			answer: false,
+			backgroundColorFalse: '#4286f4',
+			backgroundColorTrue: '#98b7ea'
+		},
+		{
+			questionNumber: 2,
+			question: 'This is question 2',
+			answer: false,
+			backgroundColorFalse: '#4286f4',
+			backgroundColorTrue: '#98b7ea'
+		},
+		{
+			questionNumber: 3,
+			question: 'This is question 3',
+			answer: false,
+			backgroundColorFalse: '#4286f4',
+			backgroundColorTrue: '#98b7ea'
+		},
+		{
+			questionNumber: 4,
+			question: 'This is question 4',
+			answer: false,
+			backgroundColorFalse: '#4286f4',
+			backgroundColorTrue: '#98b7ea'
+		},
+		{
+			questionNumber: 5,
+			question: 'This is question 5',
+			answer: false,
+			backgroundColorFalse: '#4286f4',
+			backgroundColorTrue: '#98b7ea'
+		}
+		];
+
+		var compareAlgorithms = [
+		{
+			outcome: [false, false, false, true, false]
+		},
+		{
+			outcome: [true, false, true, false, true]
+		},
+		];
+
+	
+		var message =
+		{
+			true: "The patient does not need to be referred",
+			false: "The patient does need to be referred"
+		}
+		updateQuestions();
+
+		function submitQuestion(questionNumber, questionValue) 
+		{
+			questions.forEach(ques => {
+				if(ques.questionNumber == questionNumber)
+				{
+					if(questionValue == true)
+					{
+						ques.backgroundColorTrue ='#4286f4';
+						ques.backgroundColorFalse = '#98b7ea';
+						ques.answer = true;
+						updateQuestions();
+					}			
+					else				
+					{
+						ques.backgroundColorTrue ='#98b7ea';
+						ques.backgroundColorFalse = '#4286f4';
+						ques.answer = false;
+						updateQuestions();
+					}				
+
+				}
+
+			});
+
+
+		}
+
+
+		function updateQuestions()
+		{
+			var questionButtons = document.getElementsByClassName("questionButton");
+
+
+			let returnQuestions = "";
+
+			for(let i = 0; i < questions.length; i++)
+			{
+				returnQuestions += "<div class='question_row'><div class='question'><span class='question_number'>" +  questions[i].questionNumber + "</span> " + questions[i].question + "</div><button class='btn' onclick='submitQuestion(" +questions[i].questionNumber + "," + true + ")' style='background-color:" + questions[i].backgroundColorTrue + "' class='questionButton'>TRUE</button>";
+				returnQuestions += "<button class='btn' onclick='submitQuestion(" + questions[i].questionNumber + "," + false + ")' style='background-color:"+ questions[i].backgroundColorFalse + "' class='questionButton'>FALSE</button></div>";
+			}
+			document.getElementById("questions").innerHTML = returnQuestions;
+			document.getElementById("submit_row").innerHTML = "<button class='submit_button' onclick='submitQuestions();'>Submit</button>";
+
+		}
+
+		function submitQuestions()
+		{
+			var j = 0;
+			var i;
+			var tally = 0;
+			var mtch = false;
+
+			while (j < compareAlgorithms.length && mtch == false)
+			{
+				for(i = 0; i < questions.length; i++)
+				{
+					if(questions[i].answer == compareAlgorithms[j].outcome[i])
+					{
+						tally++;
+					}
+				}
+				if(tally == questions.length)
+				{
+					mtch = true;
+					document.getElementById("result_foreground").innerHTML = "<h1>" + message.true +"</h1><br/><button class='result_foreground btn' onclick='showHideResult(false);'>Close</button>";
+					showHideResult(true);
+				}
+				else
+				{
+					document.getElementById("result_foreground").innerHTML = "<h1>" + message.false + "</h1><br/><button class='result_foreground btn' onclick='showHideResult(false);'>Close</button>";
+					showHideResult(true);
+					tally = 0;
+					j++;
+				}	
+
+			}
+
+
+		}
+
+		function showHideResult(e)
+		{
+			let result_background = document.getElementById('result_background');
+			let result_foreground = document.getElementById('result_foreground_container');
+
+			if(e == true)
+			{
+				result_background.style.display = "block";
+				result_foreground.style.display = "block";
+			}
+			else
+			{
+				result_background.style.display = "none";
+				result_foreground.style.display = "none";
+
+			}
+
+
+		}
+	</script>
+</body>
+</html>

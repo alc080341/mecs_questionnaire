@@ -1,0 +1,114 @@
+.question_row
+{
+	width: 100vw;
+	margin: auto;
+	padding: 10px;
+}
+
+.question_row > div
+{
+	width: 49%;
+	display: inline-block;
+	padding: 10px;
+}
+
+.question
+{
+	background: #edf3ff;
+}
+
+.question_number
+{
+	font-weight: bolder;
+}
+
+
+.btn
+{
+	border: none;
+	padding: 20px;
+	border-radius: 2px;
+	color: white;
+	margin: 5px;
+	width: 20%;
+}
+
+
+.submit_row
+{
+	width: 100%;
+	text-align: center;
+}
+.submit_button
+{
+	background: grey;
+	border: none;
+	padding: 20px;
+	border-radius: 2px;
+	color: white;
+	margin: 5px;
+	width: 35%;
+}
+
+.result_background
+{
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	padding: 10px;
+	background-color: #000;
+	opacity: 0.9;
+	display: none;
+	top: 10px;
+}
+
+.result_foreground_container
+{
+	position: absolute;
+	top: 40px;
+	width: 100%;
+	text-align: center;
+	z-index: 2;
+	display: none;
+}
+.result_foreground
+{
+	width: 50%;
+	text-align: center;
+	margin: auto;
+	background: #4286f4;
+	color: #fff;
+	padding: 10px;
+	border-radius: 2px;
+}
+
+.result_foreground > .btn
+{
+	border: none;
+	padding: 20px;
+	border-radius: 2px;
+	margin: 5px;
+	width: 20%;
+	color: black;
+	background: #fff;
+}
+
+@media only screen and (max-width: 701px)  
+{
+.question_row > div
+{
+	width: 100%;
+}
+
+.btn
+{
+	width: 40%;
+}
+
+
+.result_foreground
+{
+	width: 90%;
+	height: 100%;
+}
+}
